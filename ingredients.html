@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css">
+    <style>
+        html {
+            background-color: #ece7de;
+        }
+
+        input[type=checkbox] {
+            font-size: 16pt;
+            margin-right: 8px;
+        }
+
+        .has-extra-margin {
+            margin-bottom: 6px;
+        }
+
+        .list-items {
+            margin: 8px;
+            font-size: 10pt;
+        }
+
+        .has-grey-bg {
+            background-color: rgba(59, 59, 59, 0.1);
+        }
+
+        .has-red-bg {
+            background-color: rgba(255, 0, 0, 0.1);
+        }
+
+        .has-blue-bg {
+            background-color: rgba(0, 183, 255, 0.1);
+        }
+
+        .list {
+            max-width: 400px;
+        }
+
+        .no-outline {
+            webkit-box-shadow: none;
+            box-shadow: none;
+            border: none;
+        }
+
+        .has-light-bg {
+            background-color: #f8f8f8;
+        }
+
+        #recipe1 {
+            background-image: url("eggplantNoParm.png");
+            background-size: cover;
+        }
+
+        #recipe2 {
+            background-image: url("MungbeanDal.png");
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root" class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column list">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure id="recipe1" class="image is-4by3">
+                            </figure>
+                        </div>
+                        <header class="card-header ">
+                            <div class="card-header-title">
+                                <div class="control">
+                                    <input v-model="recipeName_1" class="input no-outline" type="text" placeholder="Recipe...">
+                                </div>
+                            </div>
+                            <span class="card-header-icon">
+                                <a class="button is-text is-small" @click="toggleShow(showRecipe1)">{{ showRecipe1.linkLabel }}</a>
+                            </span>
+                        </header>
+
+                        <div class="content">
+                            <div class="card-content" v-show="showRecipe1.state">
+                                <div class="control">
+                                    <input v-model="newIngredient1" @keyup.enter="addIngredient1" class="input is-small no-outline has-extra-margin" type="text"
+                                        placeholder="Ingredients...">
+                                </div>
+
+                                <div class="list-items" v-for="item in ingredients1">
+                                    <input type="checkbox" v-bind:value="item.description" v-model:checked="item.completed">
+                                    <label class="checkbox" v-bind:for="item.description" v-text="item.description">
+                                    </label>
+                                </div>
+                                <!-- <span class="card-header-icon"><a class="button is-text is-small" @click="ingredients1=[]">clear all</a></span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column list">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure id="recipe2" class="image is-4by3"></figure>
+                        </div>
+                        <header class="card-header ">
+                            <div class="card-header-title">
+                                <div class="control">
+                                    <input v-model="recipeName_2" class="input no-outline" type="text" placeholder="Recipe...">
+                                </div>
+                            </div>
+                            <span class="card-header-icon">
+                                <a class="button is-text is-small" @click="toggleShow(showRecipe2)">{{ showRecipe2.linkLabel }}</a>
+                            </span>
+                        </header>
+
+                        <div class="content">
+                            <div class="card-content" v-show="showRecipe2.state">
+                                <div class="control">
+                                    <input v-model="newIngredient2" @keyup.enter="addIngredient2" class="input is-small no-outline has-extra-margin" type="text"
+                                        placeholder="Ingredients...">
+                                </div>
+
+                                <div class="list-items" v-for="item in ingredients2">
+                                    <input type="checkbox" v-bind:value="item.description" v-model:checked="item.completed">
+                                    <label class="checkbox" v-bind:for="item.description" v-text="item.description">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column list">
+                    <div class="card">
+                        <header class="card-header has-light-bg">
+                            <p class="card-header-title">
+                                To Buy
+                            </p>
+                            <span class="card-header-icon">
+                                <a class="button is-text is-small" @click="toggleShow(showToBuy)">{{ showToBuy.linkLabel }}</a>
+                            </span>
+                        </header>
+                        <div class="card-content" v-show="showToBuy.state">
+                            <div class="content">
+                                <div class="list-items" v-for="item in toBuy1">
+                                    {{ item.description }}
+                                </div>
+                                <div class="list-items" v-for="item in toBuy2">
+                                    {{ item.description }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <header class="card-header has-light-bg">
+
+                            <p class="card-header-title">
+                                Already Have
+                            </p>
+                            <span class="card-header-icon">
+                                <a class="button is-text is-small" @click="toggleShow(showAlreadyHave)">{{ showAlreadyHave.linkLabel }}</a>
+                            </span>
+
+                        </header>
+                        <div class="card-content" v-show="showAlreadyHave.state">
+                            <div class="content">
+                                <div class="list-items" v-for="item in alreadyHave1">
+                                    {{ item.description }}
+                                </div>
+                                <div class="list-items" v-for="item in alreadyHave2">
+                                    {{ item.description }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#root',
+            data: {
+                showRecipe1: {
+                    state: true,
+                    linkLabel: 'hide'
+                },
+                showRecipe2: {
+                    state: true,
+                    linkLabel: 'hide'
+                },
+                showToBuy:
+                {
+                    state: true,
+                    linkLabel: 'hide'
+                },
+                showAlreadyHave: {
+                    state: true,
+                    linkLabel: 'hide'
+                },
+                newIngredient1: '',
+                newIngredient2: '',
+                ingredients1: [
+                    { description: 'breadcrumbs', completed: true },
+                    { description: '28oz can diced tomatoes', completed: false },
+                    { description: 'fresh basil', completed: true },
+                    { description: '1 medium eggplant', completed: false }
+                ],
+                ingredients2: [
+                    { description: '1 green apple', completed: false },
+                    { description: 'sprouted mung beans', completed: true },
+                    { description: '16oz can coconut milk', completed: true },
+                    { description: 'fresh mint', completed: false },
+                    { description: 'ginger', completed: false }
+                ],
+                recipeName_1: 'Eggplant No Parm',
+                recipeName_2: 'Mung Bean Dal'
+            },
+            methods: {
+                addIngredient1() {
+                    let value = this.newIngredient1;
+                    this.ingredients1.push(
+                        { description: value, completed: false }
+                    ),
+                        this.newIngredient1 = '';
+                },
+                addIngredient2() {
+                    let value = this.newIngredient2;
+                    this.ingredients2.push(
+                        { description: value, completed: false }
+                    ),
+                        this.newIngredient2 = '';
+                },
+                toggleShow(current) {
+                    if (current.state) {
+                        current.state = false;
+                        current.linkLabel = 'show';
+                    }
+                    else {
+                        current.state = true;
+                        current.linkLabel = 'hide';
+                    }
+                }
+            },
+            computed: {
+                toBuy1() {
+                    return this.ingredients1.filter(item => !item.completed);
+                },
+                alreadyHave1() {
+                    return this.ingredients1.filter(item => item.completed);
+                },
+                toBuy2() {
+                    return this.ingredients2.filter(item => !item.completed);
+                },
+                alreadyHave2() {
+                    return this.ingredients2.filter(item => item.completed);
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>
