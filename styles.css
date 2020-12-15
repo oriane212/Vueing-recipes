@@ -1,0 +1,53 @@
+html {
+    background-color: #ece7de;
+}
+
+input[type=checkbox] {
+    font-size: 16pt;
+    margin-right: 8px;
+}
+
+.has-extra-margin {
+    margin-bottom: 6px;
+}
+
+.list-items {
+    margin: 8px;
+    font-size: 10pt;
+}
+
+.has-grey-bg {
+    background-color: rgba(59, 59, 59, 0.1);
+}
+
+.has-red-bg {
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.has-blue-bg {
+    background-color: rgba(0, 183, 255, 0.1);
+}
+
+.list {
+    max-width: 400px;
+}
+
+.no-outline {
+    webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+}
+
+.has-light-bg {
+    background-color: #f8f8f8;
+}
+
+#recipe1 {
+    background-image: url("eggplantNoParm.png");
+    background-size: cover;
+}
+
+#recipe2 {
+    background-image: url("MungbeanDal.png");
+    background-size: cover;
+}

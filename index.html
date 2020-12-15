@@ -4,63 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Vueing Recipes</title>
+    <link ref="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css">
-    <style>
-        html {
-            background-color: #ece7de;
-        }
-
-        input[type=checkbox] {
-            font-size: 16pt;
-            margin-right: 8px;
-        }
-
-        .has-extra-margin {
-            margin-bottom: 6px;
-        }
-
-        .list-items {
-            margin: 8px;
-            font-size: 10pt;
-        }
-
-        .has-grey-bg {
-            background-color: rgba(59, 59, 59, 0.1);
-        }
-
-        .has-red-bg {
-            background-color: rgba(255, 0, 0, 0.1);
-        }
-
-        .has-blue-bg {
-            background-color: rgba(0, 183, 255, 0.1);
-        }
-
-        .list {
-            max-width: 400px;
-        }
-
-        .no-outline {
-            webkit-box-shadow: none;
-            box-shadow: none;
-            border: none;
-        }
-
-        .has-light-bg {
-            background-color: #f8f8f8;
-        }
-
-        #recipe1 {
-            background-image: url("eggplantNoParm.png");
-            background-size: cover;
-        }
-
-        #recipe2 {
-            background-image: url("MungbeanDal.png");
-            background-size: cover;
-        }
-    </style>
 </head>
 
 <body>
@@ -185,87 +131,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
-    <script>
-        let app = new Vue({
-            el: '#root',
-            data: {
-                showRecipe1: {
-                    state: true,
-                    linkLabel: 'hide'
-                },
-                showRecipe2: {
-                    state: true,
-                    linkLabel: 'hide'
-                },
-                showToBuy:
-                {
-                    state: true,
-                    linkLabel: 'hide'
-                },
-                showAlreadyHave: {
-                    state: true,
-                    linkLabel: 'hide'
-                },
-                newIngredient1: '',
-                newIngredient2: '',
-                ingredients1: [
-                    { description: 'breadcrumbs', completed: true },
-                    { description: '28oz can diced tomatoes', completed: false },
-                    { description: 'fresh basil', completed: true },
-                    { description: '1 medium eggplant', completed: false }
-                ],
-                ingredients2: [
-                    { description: '1 green apple', completed: false },
-                    { description: 'sprouted mung beans', completed: true },
-                    { description: '16oz can coconut milk', completed: true },
-                    { description: 'fresh mint', completed: false },
-                    { description: 'ginger', completed: false }
-                ],
-                recipeName_1: 'Eggplant No Parm',
-                recipeName_2: 'Mung Bean Dal'
-            },
-            methods: {
-                addIngredient1() {
-                    let value = this.newIngredient1;
-                    this.ingredients1.push(
-                        { description: value, completed: false }
-                    ),
-                        this.newIngredient1 = '';
-                },
-                addIngredient2() {
-                    let value = this.newIngredient2;
-                    this.ingredients2.push(
-                        { description: value, completed: false }
-                    ),
-                        this.newIngredient2 = '';
-                },
-                toggleShow(current) {
-                    if (current.state) {
-                        current.state = false;
-                        current.linkLabel = 'show';
-                    }
-                    else {
-                        current.state = true;
-                        current.linkLabel = 'hide';
-                    }
-                }
-            },
-            computed: {
-                toBuy1() {
-                    return this.ingredients1.filter(item => !item.completed);
-                },
-                alreadyHave1() {
-                    return this.ingredients1.filter(item => item.completed);
-                },
-                toBuy2() {
-                    return this.ingredients2.filter(item => !item.completed);
-                },
-                alreadyHave2() {
-                    return this.ingredients2.filter(item => item.completed);
-                },
-            }
-        })
-    </script>
+    <script src="app.js"></script>
 </body>
 
 </html>
