@@ -41,13 +41,14 @@ input[type=checkbox] {
 .has-light-bg {
     background-color: #f8f8f8;
 }
-
+/*
 #recipe1 {
-    background-image: url("eggplantNoParm.png");
+    background-image: url("./eggplantNoParm.png");
     background-size: cover;
 }
 
 #recipe2 {
-    background-image: url("MungbeanDal.png");
+    background-image: url("./MungbeanDal.png");
     background-size: cover;
 }
+*/
