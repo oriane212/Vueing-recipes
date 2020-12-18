@@ -7,80 +7,20 @@
     <title>Vueing Recipes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css">
     <link rel="stylesheet" href="styles.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"
+        integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div id="root" class="section">
         <div class="container">
-            <div class="columns">
-                <div class="column list">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure id="recipe1" class="image is-4by3">
-                            </figure>
-                        </div>
-                        <header class="card-header ">
-                            <div class="card-header-title">
-                                <div class="control">
-                                    <input v-model="recipeName_1" class="input no-outline" type="text" placeholder="Recipe...">
-                                </div>
-                            </div>
-                            <span class="card-header-icon">
-                                <a class="button is-text is-small" @click="toggleShow(showRecipe1)">{{ showRecipe1.linkLabel }}</a>
-                            </span>
-                        </header>
+            <h1 class="title">Vueing Recipes</h1>
+            
+            <div id="generatedlists" class="container">
+                
+                <h2 class="subtitle">Ingredients List</h1>
 
-                        <div class="content">
-                            <div class="card-content" v-show="showRecipe1.state">
-                                <div class="control">
-                                    <input v-model="newIngredient1" @keyup.enter="addIngredient1" class="input is-small no-outline has-extra-margin" type="text"
-                                        placeholder="Ingredients...">
-                                </div>
-
-                                <div class="list-items" v-for="item in ingredients1">
-                                    <input type="checkbox" v-bind:value="item.description" v-model:checked="item.completed">
-                                    <label class="checkbox" v-bind:for="item.description" v-text="item.description">
-                                    </label>
-                                </div>
-                                <!-- <span class="card-header-icon"><a class="button is-text is-small" @click="ingredients1=[]">clear all</a></span> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column list">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure id="recipe2" class="image is-4by3"></figure>
-                        </div>
-                        <header class="card-header ">
-                            <div class="card-header-title">
-                                <div class="control">
-                                    <input v-model="recipeName_2" class="input no-outline" type="text" placeholder="Recipe...">
-                                </div>
-                            </div>
-                            <span class="card-header-icon">
-                                <a class="button is-text is-small" @click="toggleShow(showRecipe2)">{{ showRecipe2.linkLabel }}</a>
-                            </span>
-                        </header>
-
-                        <div class="content">
-                            <div class="card-content" v-show="showRecipe2.state">
-                                <div class="control">
-                                    <input v-model="newIngredient2" @keyup.enter="addIngredient2" class="input is-small no-outline has-extra-margin" type="text"
-                                        placeholder="Ingredients...">
-                                </div>
-
-                                <div class="list-items" v-for="item in ingredients2">
-                                    <input type="checkbox" v-bind:value="item.description" v-model:checked="item.completed">
-                                    <label class="checkbox" v-bind:for="item.description" v-text="item.description">
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="column list">
                     <div class="card">
                         <header class="card-header has-light-bg">
                             <p class="card-header-title">
@@ -101,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-
+              
                     <div class="card">
                         <header class="card-header has-light-bg">
 
@@ -124,9 +64,92 @@
                             </div>
                         </div>
                     </div>
+                
+
+                </div>
+
+                <div class="level">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <h2 class="subtitle">My Recipes</h1>
+                        </div>
+                        <div class="level-item">
+                                <span class="icon is-small">
+                                    <i class="fas fa-plus"></i>
+                                </span> 
+                        </div>
+                    </div>
+                </div>
+        
+            <div class="columns is-desktop">
+
+                <div class="column">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure id="recipe1" class="image is-4by3">
+                            </figure>
+                        </div>
+                        <header class="card-header ">
+                            <div class="card-header-title">
+                                <div class="control">
+                                    <input v-model="recipeName_1" class="input no-outline" type="text" placeholder="Recipe...">
+                                </div>
+                            </div>
+                            <span class="card-header-icon">
+                                <a class="button is-text is-small" @click="toggleShow(showRecipe1)">{{ showRecipe1.linkLabel }}</a>
+                            </span>
+                        </header>
+                        <div class="content">
+                            <div class="card-content" v-show="showRecipe1.state">
+                                <div class="control">
+                                    <input v-model="newIngredient1" @keyup.enter="addIngredient1" class="input is-small no-outline has-extra-margin" type="text"
+                                        placeholder="Add an Ingredient...">
+                                </div>
+
+                                <div class="list-items" v-for="item in ingredients1">
+                                    <input type="checkbox" v-bind:value="item.description" v-model:checked="item.completed">
+                                    <label class="checkbox" v-bind:for="item.description" v-text="item.description">
+                                    </label>
+                                </div>
+                                <!-- <span class="card-header-icon"><a class="button is-text is-small" @click="ingredients1=[]">clear all</a></span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure id="recipe2" class="image is-4by3"></figure>
+                        </div>
+                        <header class="card-header ">
+                            <div class="card-header-title">
+                                <div class="control">
+                                    <input v-model="recipeName_2" class="input no-outline" type="text" placeholder="Recipe...">
+                                </div>
+                            </div>
+                            <span class="card-header-icon">
+                                <a class="button is-text is-small" @click="toggleShow(showRecipe2)">{{ showRecipe2.linkLabel }}</a>
+                            </span>
+                        </header>
+                        <div class="content">
+                            <div class="card-content" v-show="showRecipe2.state">
+                                <div class="control">
+                                    <input v-model="newIngredient2" @keyup.enter="addIngredient2" class="input is-small no-outline has-extra-margin" type="text"
+                                        placeholder="Add an Ingredient...">
+                                </div>
+
+                                <div class="list-items" v-for="item in ingredients2">
+                                    <input type="checkbox" v-bind:value="item.description" v-model:checked="item.completed">
+                                    <label class="checkbox" v-bind:for="item.description" v-text="item.description">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
+
         </div>
     </div>
 

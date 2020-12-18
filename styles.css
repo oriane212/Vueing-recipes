@@ -28,8 +28,10 @@ input[type=checkbox] {
     background-color: rgba(0, 183, 255, 0.1);
 }
 
-.list {
-    max-width: 400px;
+.column {
+    max-width: 460px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .no-outline {
@@ -50,4 +52,25 @@ input[type=checkbox] {
 #recipe2 {
     background-image: url("MungbeanDal.png");
     background-size: cover;
+}
+
+span.icon.is-small {
+    border: 1px solid grey;
+    border-radius: 30px;
+    padding: 14px;
+}
+
+span.icon.is-small:hover {
+    border: 1px solid black;
+}
+
+@media screen and (max-width: 1023px) {
+    .column {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+#generatedlists {
+    margin-bottom: 30px;
 }
